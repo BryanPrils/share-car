@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function(){
     Route::prefix('car')->group(function (){
         Route::get('/create', CreateRideController::class);
         Route::post('/create', StoreRideController::class);
+        Route::get('/export', \App\Http\Controllers\Car\ExportRidesController::class);
     });
 
 });
