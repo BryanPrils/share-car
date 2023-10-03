@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginUserController;
+use App\Http\Controllers\Car\CreateRideController;
+use App\Http\Controllers\Car\StoreRideController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,13 +19,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginUserController::class, 'create'])->name('login');
     Route::post('/login', [LoginUserController::class, 'store'])->name('login.store');
-
-
 });
 
 Route::middleware('auth')->group(function(){
     Route::get('/', function () {
         return view('user.home');
+    });
+
+    Route::prefix('car')->group(function (){
+        Route::get('/create', CreateRideController::class);
+        Route::post('/create', StoreRideController::class);
     });
 
 });

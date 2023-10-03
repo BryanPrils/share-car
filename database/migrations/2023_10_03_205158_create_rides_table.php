@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->double('mileage');
+            $table->date('date');
             $table->timestamps();
         });
     }
