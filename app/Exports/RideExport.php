@@ -37,21 +37,19 @@ class RideExport implements FromCollection, WithHeadings, WithMapping
             __('Previous Mileage'),
             __('Mileage'),
             __('Date'),
+            __("Driven km's")
         ];
     }
 
     public function map($row): array
     {
         $previousMileage = Ride::find($row->id -1);
-        info($row->id);
-        info(Ride::find($row->id -1));
-        info($previousMileage);
-
         return [
             $row->user->name,
             $previousMileage->mileage ?? 0,
             $row->mileage,
-            $row->date
+            $row->date,
+            $row->mileage - $previousMileage?->mileage
         ];
     }
 }
